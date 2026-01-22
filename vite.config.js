@@ -1,0 +1,18 @@
+// vite.config.js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      "/lifepage": {
+        target: "https://www.lifepage.in",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) =>
+          path.replace(/^\/lifepage/, ""),
+      },
+    },
+  },
+});
