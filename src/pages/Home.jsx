@@ -79,7 +79,6 @@ export default function Home() {
           "
         >
           <span>Explore</span>
-          {/* <MdExplore size={25} /> */}
           <img src={path} alt="Explore" className="w-15 h-7" />
         </button>
       </div>
@@ -111,8 +110,7 @@ export default function Home() {
             inline-flex items-center gap-2
           "
         >
-          <span>I Have No idea</span>
-          {/* <MdExplore size={25} /> */}
+          <span>Discover</span>
           <img src={path} alt="Explore" className="w-15 h-7" />
         </button>
       </div>
