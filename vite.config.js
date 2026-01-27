@@ -4,9 +4,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/ai/",
   server: {
     proxy: {
-      "/lifepage": {
+      "/n/api": {
         target: "https://www.lifepage.in",
         changeOrigin: true,
         secure: true,

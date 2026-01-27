@@ -568,7 +568,7 @@ export default function DreamIndexModal({
     setCalculating(true);
 
     axios
-      .post("/lifepage/n/api/DreamIndex", {
+      .post("/n/api/DreamIndex", {
         maxScore: 10,
         questions: sessionData.map((q) => ({
           category: q.que_category,

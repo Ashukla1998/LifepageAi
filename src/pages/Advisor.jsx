@@ -12,7 +12,7 @@ const aiProfile = {
   pl: "Available 24/7",
   from: Date.now() / 1000,
   to: Date.now() / 1000,
-  thumb: "/ai.jpg",
+  thumb: "ai.jpg",
   isAI: true,
 };
 
@@ -30,7 +30,7 @@ export default function Advisors() {
         setLoading(true);
 
         const res = await axios.post(
-          "/lifepage/n/api/SearchByName",   // 👈 YOUR BACKEND API
+          "/n/api/SearchByName",   // 👈 YOUR BACKEND API
           { name: searchTerm },
           { headers: { "Content-Type": "application/json" } }
         );

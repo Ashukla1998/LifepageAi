@@ -9,7 +9,7 @@ import Blog from "./pages/Blog";
 export default function App() {
   const isMobile = useIsMobile();
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/ai">
       <div className="
         min-h-screen w-full
         bg-gradient-to-b from-bgStart to-bgEnd

@@ -192,7 +192,7 @@ export default function Blog() {
 
         /* -------- QUESTIONS / WEIGHTS -------- */
         const questionRes = await axios.post(
-          "/lifepage/n/api/questiondetails",
+          "/n/api/questiondetails",
           { id: sessionProfile.profileid },
           { headers: { "Content-Type": "application/json" } }
         );
@@ -211,7 +211,7 @@ export default function Blog() {
 
         /* -------- SESSION CONTENT -------- */
         const contentRes = await axios.post(
-          "/lifepage/n/api/checksession",
+          "/n/api/checksession",
           { id: sessionProfile.profileid },
           { headers: { "Content-Type": "application/json" } }
         );
