@@ -30,7 +30,7 @@ export default function Home() {
       px-6 py-8
       sm:px-8 sm:py-10
       lg:px-14 lg:py-14
-      text-center
+      text-center justify-center align-center
     ">
       {/* Heading */}
       <h1 className="

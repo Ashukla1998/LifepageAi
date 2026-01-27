@@ -27,7 +27,7 @@ export default function Navbar() {
           py-3
         "
       >
-        <img src="icon.png" alt="Lifepage,in" className="w-10 h-10" />
+        <img src={`${import.meta.env.BASE_URL}icon.png`} alt="Lifepage.in" className="w-10 h-10" />
         {/* RESET BUTTON WITH TOOLTIP */}
         <button
           onClick={handleRestart}
@@ -43,7 +43,7 @@ export default function Navbar() {
             inline-flex items-center gap-2
           "
         >
-          <span>Reset</span>
+          <span>lifePage.in/ai</span>
           <MdOutlineRestartAlt size={20} />
 
           {/* TOOLTIP */}
