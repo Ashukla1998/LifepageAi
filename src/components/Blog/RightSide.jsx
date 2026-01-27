@@ -114,8 +114,8 @@ export default function RightSide({
               px-10 py-4
               rounded-full
               font-semibold text-lg
-              bg-gray-900 text-white
-              hover:bg-gray-800
+              bg-brand text-white
+              hover:bg-brand
               transition
             "
           >

@@ -131,14 +131,13 @@ export default function DreamIndexModal({
 
         {!isComplete && (
           <QuestionStep
-  question={currentQuestion}
-  value={value}
-  setValue={setValue}
-  onNext={handleNext}
-  onPrevious={handlePrevious}
-  isFirst={questionIndex === 0 && activeTab === TABS[0]}
-/>
-
+            question={currentQuestion}
+            value={value}
+            setValue={setValue}
+            onNext={handleNext}
+            onPrevious={handlePrevious}
+            isFirst={questionIndex === 0 && activeTab === TABS[0]}
+          />
         )}
 
         {isComplete && (
