@@ -22,11 +22,12 @@ export default function Navbar() {
       <nav
         className="
           max-w-7xl mx-auto
-          flex items-center justify-end
+          flex items-center justify-between
           px-4 sm:px-6
           py-3
         "
       >
+        <img src="icon.png" alt="Lifepage,in" className="w-10 h-10" />
         {/* RESET BUTTON WITH TOOLTIP */}
         <button
           onClick={handleRestart}

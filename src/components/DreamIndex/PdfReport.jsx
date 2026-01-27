@@ -8,10 +8,10 @@ export default function PdfReport({
   answers,
 }) {
   return (
-    <div className="absolute left-[-9999px] top-0">
+    <div className="absolute left-[-9999px] top-0"> 
       <div
         ref={reportRef}
-        className="relative p-14 text-gray-900 w-[900px]"
+        className="relative p-14 text-gray-700 w-[900px] bg-brand"
         style={{
           background: "rgba(255,255,255,0.92)",
           borderRadius: "28px",
@@ -20,7 +20,7 @@ export default function PdfReport({
         {/* HEADER */}
         <div className="flex items-center justify-between mb-14">
           <div>
-            <h1 className="text-5xl font-extrabold text-indigo-700 leading-tight">
+            <h1 className="text-5xl font-extrabold text-textPrimary leading-tight">
               Dream Index Career Report
             </h1>
             <p className="text-lg text-gray-600 mt-2">
@@ -32,7 +32,7 @@ export default function PdfReport({
             <img
               src={image}
               alt="Profile"
-              className="w-32 h-32 rounded-full border-4 border-indigo-500 shadow-lg"
+              className="w-32 h-32 rounded-full border-4 border-amber-400 shadow-lg object-contain"
             />
           )}
         </div>
@@ -46,13 +46,13 @@ export default function PdfReport({
               border: "1px solid #e0e7ff",
             }}
           >
-            <p className="text-sm uppercase tracking-wider text-indigo-600 mb-2">
+            <p className="text-sm uppercase tracking-wider text-textPrimary mb-2">
               Executive Summary
             </p>
 
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-7xl font-extrabold text-indigo-700">
+                <p className="text-7xl font-extrabold text-textPrimary">
                   {dreamResult.overall_percentage}%
                 </p>
                 <p className="text-gray-600 mt-2 text-lg">
@@ -86,7 +86,7 @@ export default function PdfReport({
                   className="p-6 rounded-2xl bg-white shadow-sm border"
                 >
                   <p className="text-sm text-gray-500 mb-2">{cat}</p>
-                  <p className="text-3xl font-extrabold text-indigo-600">
+                  <p className="text-3xl font-extrabold text-textPrimary">
                     {val}%
                   </p>
                 </div>
@@ -104,7 +104,7 @@ export default function PdfReport({
           {Object.entries(groupedData).map(([category, qs]) =>
             qs.length > 0 ? (
               <div key={category} className="mb-12">
-                <h3 className="text-xl font-semibold text-indigo-700 mb-4">
+                <h3 className="text-xl font-semibold text-textPrimary mb-4">
                   {category}
                 </h3>
 
@@ -115,7 +115,7 @@ export default function PdfReport({
                       className="flex justify-between items-center bg-white px-6 py-4 rounded-xl border"
                     >
                       <span className="text-gray-700">{q.question}</span>
-                      <span className="font-semibold text-indigo-600">
+                      <span className="font-semibold text-textPrimary">
                         {answers[q.questionid]}/10
                       </span>
                     </div>

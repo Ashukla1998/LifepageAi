@@ -101,8 +101,8 @@ export function usePdfExport() {
     const exportPdf = async ({
         ref,
         fileName = "download",
-        background = "bg_image.png",
-        watermarkText = "lifepage.in",
+        background = `${import.meta.env.BASE_URL}bg_image.png`,
+        watermarkText = "LifePage",
         imageSelector = "img",
         generatedFor,
     }) => {
@@ -120,7 +120,7 @@ export function usePdfExport() {
         try {
             // Apply PDF-only background
             if (background) {
-                el.style.backgroundImage = `url('${background}')`;
+                // el.style.backgroundImage = `url('${background}')`;
                 el.style.backgroundSize = "cover";
                 el.style.backgroundPosition = "center";
                 el.style.backgroundRepeat = "no-repeat";
