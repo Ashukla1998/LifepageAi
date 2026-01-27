@@ -6,6 +6,9 @@ import Blog from "./pages/Blog";
 import Navbar from "./components/Navbar";
 import { ToastContainer } from "react-toastify";
 import useIsMobile from "./hooks/IsMobile";
+import Discover from "./pages/Discover";
+// import ChatBot from "./pages/ChatBot";
+
 
 export default function AppLayout() {
   const isMobile = useIsMobile();
@@ -36,6 +39,7 @@ export default function AppLayout() {
           <Route path="/" element={<Home />} />
           <Route path="/careers" element={<Advisor />} />
           <Route path="/careers/:profileid" element={<Blog />} />
+          <Route path="/discover" element={<Discover />}/>
         </Routes>
       </div>
 
