@@ -5,9 +5,10 @@ import Advisor from "./pages/Advisor";
 import { ToastContainer } from "react-toastify";
 import useIsMobile from "./hooks/IsMobile";
 import Blog from "./pages/Blog";
-
+import Navbar from "./components/Navbar";
 export default function App() {
   const isMobile = useIsMobile();
+  
   return (
     <BrowserRouter basename="/ai">
       <div className="
@@ -18,7 +19,9 @@ export default function App() {
         justify-center
         px-4 sm:px-6
         py-6 sm:py-0
+        flex-col
       ">
+        <Navbar/>
         <div className="w-full flex justify-center">
           <Routes>
             <Route path="/" element={<Home />} />

@@ -101,7 +101,7 @@ export function usePdfExport() {
     const exportPdf = async ({
         ref,
         fileName = "download",
-        background = "/bg_image.png",
+        background = "bg_image.png",
         watermarkText = "lifepage.in",
         imageSelector = "img",
         generatedFor,

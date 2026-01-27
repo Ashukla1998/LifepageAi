@@ -1,7 +1,8 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
+import path from "../assets/path.png";
+// import axios from "axios";
 export default function Home() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,22 +37,13 @@ export default function Home() {
         text-2xl sm:text-3xl lg:text-4xl
         font-extrabold text-textPrimary
       ">
-        Choose a Career Path
+        Find a Career Path
       </h1>
 
-      <p className="
-        mt-3
-        text-sm sm:text-textSecondary
-        text-textSecondary
-        max-w-xl mx-auto
-      ">
-        Enter a career you’re interested in, or skip to explore career possibilities freely.
-      </p>
-
       {/* Input */}
-      <div className="mt-8 sm:mt-10 text-left">
+      <div className="mt-8 sm:mt-10 text-center">
         <label className="text-sm text-textSecondary">
-          Which career are you interested in?
+          Which Career are you interested in?
         </label>
 
         <input
@@ -66,7 +58,7 @@ export default function Home() {
             text-textPrimary
             focus:outline-none
             focus:ring-2 focus:ring-brand/40
-            transition mt-2
+            transition mt-2 text-center
           "
         />
       </div>
@@ -83,11 +75,15 @@ export default function Home() {
             hover:bg-amber-600
             active:scale-95
             transition-all
+            inline-flex items-center gap-2
           "
         >
-          Explore
+          <span>Explore</span>
+          {/* <MdExplore size={25} /> */}
+          <img src={path} alt="Explore" className="w-15 h-7" />
         </button>
       </div>
+
 
       {/* OR Divider */}
       <div className="
@@ -101,24 +97,26 @@ export default function Home() {
       </div>
 
       {/* Skip Button */}
-      <div className="mt-6 sm:mt-8">
+      <div className="mt-8 sm:mt-10">
         <button
           onClick={handleSkip}
           className="
             w-full sm:w-auto
-            px-8 sm:px-10 py-3
+            px-8 sm:px-10 py-3 sm:py-4
             rounded-full
-            border border-brand
-            text-brand font-semibold
-            text-sm sm:text-brand
-            hover:bg-brand/10
+            bg-brand text-white font-semibold
+            hover:bg-amber-600
             active:scale-95
             transition-all
+            inline-flex items-center gap-2
           "
         >
-          I have no idea about my career interest
+          <span>I Have No idea</span>
+          {/* <MdExplore size={25} /> */}
+          <img src={path} alt="Explore" className="w-15 h-7" />
         </button>
       </div>
+
     </div>
   );
 }

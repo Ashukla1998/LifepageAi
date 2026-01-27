@@ -10,7 +10,7 @@ module.exports = {
         primary: ["Poppins", "sans-serif"],
       },
       colors: {
-        brand: "#F59E0B",
+        brand: "#E46C09",
         base: "#FFFBEB",
         textPrimary: "#3F2D1C",
         textSecondary: "#6B7280",
