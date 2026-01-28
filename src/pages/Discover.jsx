@@ -1,9 +1,5 @@
-import React, { useState,useEffect } from "react";
-import { useNavigate,useLocation  } from "react-router-dom";
-import axios from "axios";
-import { buildCareerPrompt } from "../hooks/buildCareerPrompt";
-import { fetchCareers } from "../api/careerApi";
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 export default function Discover() {
   const navigate = useNavigate();
 
@@ -17,6 +13,39 @@ export default function Discover() {
     showOtherSubject: false,
     showOtherInterest: false,
   });
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const validate = () => {
+  const newErrors = {};
+
+  if (!form.name.trim()) {
+    newErrors.name = "Name is required";
+  }
+
+  if (!form.stage) {
+    newErrors.stage = "Please select your current stage";
+  }
+
+  if (form.subjects.length === 0) {
+    newErrors.subjects = "Select at least one subject";
+  }
+
+  if (form.showOtherSubject && !form.otherSubject.trim()) {
+    newErrors.otherSubject = "Please specify your subject";
+  }
+
+  if (form.interests.length === 0) {
+    newErrors.interests = "Select at least one interest";
+  }
+
+  if (form.showOtherInterest && !form.otherInterest.trim()) {
+    newErrors.otherInterest = "Please specify your interest";
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
+
 
   const stages = [
     "School (8–10)",
@@ -27,28 +56,44 @@ export default function Discover() {
   ];
 
   const subjects = [
-    "Mathematics",
-    "Science",
-    "Technology",
-    "Commerce",
-    "Arts / Design",
-    "Languages",
-    "Others",
-  ];
+  "Mathematics",
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "Computer Science / IT",
+  "Science (General)",
+  "Commerce / Business Studies",
+  "Economics",
+  "Arts / Design",
+  "Social Sciences",
+  "Languages",
+  "Psychology",
+  "Others",
+];
 
-  const interests = [
-    "Problem Solving",
-    "Creating / Designing",
-    "Helping People",
-    "Technology",
-    "Teaching",
-    "Writing",
-    "Others",
-  ];
+
+const interests = [
+  "Problem Solving",
+  "Logical Thinking",
+  "Creativity / Designing",
+  "Technology & Gadgets",
+  "Data & Analysis",
+  "Helping People",
+  "Teaching / Mentoring",
+  "Writing & Communication",
+  "Research & Exploration",
+  "Leadership & Management",
+  "Business & Entrepreneurship",
+  "Public Speaking",
+  "Others",
+];
 
   const handleSubmit = async() => {
+    if (!validate() || submitting) return;
+     setSubmitting(true);
     navigate("/aicareers", { state: { discoverData: form } });
-    console.log("Forms Data",form);
+    // console.log("Forms Data",form);
+    setSubmitting(false);
   };
 
   const chipBase =
@@ -73,29 +118,38 @@ export default function Discover() {
         {/* Name */}
         <div className="mt-8">
           <label className="text-sm font-medium text-textSecondary">
-            What should we call you?
+            What should we call you? <span className="text-red-800">*</span>
           </label>
           <input
             type="text"
-            placeholder="Optional"
+            placeholder="eg:ABC"
             value={form.name}
-            onChange={(e) =>
-              setForm({ ...form, name: e.target.value })
-            }
-            className="mt-2 w-full rounded-full px-5 py-3 border text-center focus:ring-2 focus:ring-brand/40"
+            onChange={(e) => {
+              setForm({ ...form, name: e.target.value });
+              setErrors((p) => ({ ...p, name: "" }));
+            }}
+            className="mt-2 w-full rounded-full px-5 py-3 border border-brand text-center
+           focus:outline-none focus:ring-2 focus:ring-brand/40 focus:border-brand transition"
           />
+          {errors.name && (
+            <p className="text-red-500 text-s mt-1 text-center"><span className="text-red-800">**</span>{errors.name}<span className="text-red-800">**</span></p>
+          )}
         </div>
 
         {/* Stage */}
         <section className="mt-10">
           <p className="text-sm font-medium text-textSecondary mb-3">
-            Where are you right now?
+            Where are you right now?<span className="text-red-800">*</span>
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {stages.map((s) => (
               <button
                 key={s}
-                onClick={() => setForm({ ...form, stage: s })}
+                // onClick={() => setForm({ ...form, stage: s })}
+                onClick={() => {
+                  setForm({ ...form, stage: s });
+                  setErrors((prev) => ({ ...prev, stage: "" }));
+                }}
                 className={`${chipBase} ${
                   form.stage === s ? chipActive : chipInactive
                 }`}
@@ -104,34 +158,53 @@ export default function Discover() {
               </button>
             ))}
           </div>
+          {errors.stage && (
+              <p className="text-red-500 text-s mt-2 text-center"><span className="text-red-800">**</span>{errors.stage}<span className="text-red-800">**</span></p>
+            )}
         </section>
 
         {/* Subjects */}
         <section className="mt-10">
           <p className="text-sm font-medium text-textSecondary mb-3">
-            Subjects you enjoy
+            Subjects you enjoy<span className="text-red-800">*</span>
           </p>
           <div className="flex flex-wrap gap-2">
             {subjects.map((s) => (
               <button
                 key={s}
-                onClick={() =>
-                  s === "Others"
-                    ? setForm((p) => ({
-                        ...p,
-                        showOtherSubject: !p.showOtherSubject,
-                        otherSubject: "",
-                        subjects: p.subjects.filter(
-                          (v) => v !== p.otherSubject
-                        ),
-                      }))
-                    : setForm((p) => ({
-                        ...p,
-                        subjects: p.subjects.includes(s)
-                          ? p.subjects.filter((v) => v !== s)
-                          : [...p.subjects, s],
-                      }))
-                }
+                onClick={() => {
+                  if (s === "Others") {
+                    setForm((p) => ({
+                      ...p,
+                      showOtherSubject: !p.showOtherSubject,
+                      otherSubject: "",
+                      subjects: p.subjects.filter(
+                        (v) => v !== p.otherSubject
+                      ),
+                    }));
+
+                    // clear errors related to subject
+                    setErrors((e) => ({
+                      ...e,
+                      subjects: "",
+                      otherSubject: "",
+                    }));
+                  } else {
+                    setForm((p) => ({
+                      ...p,
+                      subjects: p.subjects.includes(s)
+                        ? p.subjects.filter((v) => v !== s)
+                        : [...p.subjects, s],
+                    }));
+
+                    // clear subjects error
+                    setErrors((e) => ({
+                      ...e,
+                      subjects: "",
+                    }));
+                  }
+                }}
+
                 className={`${chipBase} ${
                   s === "Others"
                     ? form.showOtherSubject
@@ -153,53 +226,86 @@ export default function Discover() {
               type="text"
               placeholder="Your subject"
               value={form.otherSubject}
-              onChange={(e) =>
+              onChange={(e) => {
+                const value = e.target.value;
+
                 setForm((p) => ({
                   ...p,
-                  otherSubject: e.target.value,
-                  subjects: e.target.value
+                  otherSubject: value,
+                  subjects: value
                     ? [
                         ...p.subjects.filter(
                           (v) => v !== p.otherSubject
                         ),
-                        e.target.value,
+                        value,
                       ]
                     : p.subjects.filter(
                         (v) => v !== p.otherSubject
                       ),
-                }))
-              }
+                }));
+
+                // clear related errors while typing
+                setErrors((prev) => ({
+                  ...prev,
+                  subjects: "",
+                  otherSubject: value.trim() ? "" : prev.otherSubject,
+                }));
+              }}
+
               className="mt-4 w-full rounded-full px-5 py-3 border focus:ring-2 focus:ring-brand/40 animate-fadeIn"
             />
           )}
+
+          {errors.subjects && (
+              <p className="text-red-500 text-s text-center mt-2"><span className="text-red-800">**</span>{errors.subjects}<span className="text-red-800">**</span></p>
+            )}
+
+            {errors.otherSubject && (
+              <p className="text-red-500 text-s text-center mt-2"><span className="text-red-800">**</span>{errors.otherSubject}<span className="text-red-800">**</span></p>
+            )}
+
         </section>
 
         {/* Interests */}
         <section className="mt-10">
           <p className="text-sm font-medium text-textSecondary mb-3">
-            What do you enjoy doing?
+            What do you enjoy doing?<span className="text-red-800">*</span>
           </p>
           <div className="flex flex-wrap gap-2">
             {interests.map((i) => (
               <button
                 key={i}
-                onClick={() =>
-                  i === "Others"
-                    ? setForm((p) => ({
-                        ...p,
-                        showOtherInterest: !p.showOtherInterest,
-                        otherInterest: "",
-                        interests: p.interests.filter(
-                          (v) => v !== p.otherInterest
-                        ),
-                      }))
-                    : setForm((p) => ({
-                        ...p,
-                        interests: p.interests.includes(i)
-                          ? p.interests.filter((v) => v !== i)
-                          : [...p.interests, i],
-                      }))
-                }
+                onClick={() => {
+                  if (i === "Others") {
+                    setForm((p) => ({
+                      ...p,
+                      showOtherInterest: !p.showOtherInterest,
+                      otherInterest: "",
+                      interests: p.interests.filter(
+                        (v) => v !== p.otherInterest
+                      ),
+                    }));
+
+                    setErrors((e) => ({
+                      ...e,
+                      interests: "",
+                      otherInterest: "",
+                    }));
+                  } else {
+                    setForm((p) => ({
+                      ...p,
+                      interests: p.interests.includes(i)
+                        ? p.interests.filter((v) => v !== i)
+                        : [...p.interests, i],
+                    }));
+
+                    setErrors((e) => ({
+                      ...e,
+                      interests: "",
+                    }));
+                  }
+                }}
+
                 className={`${chipBase} ${
                   i === "Others"
                     ? form.showOtherInterest
@@ -221,32 +327,58 @@ export default function Discover() {
               type="text"
               placeholder="Your interest"
               value={form.otherInterest}
-              onChange={(e) =>
+              onChange={(e) => {
+                const value = e.target.value;
+
                 setForm((p) => ({
                   ...p,
-                  otherInterest: e.target.value,
-                  interests: e.target.value
+                  otherInterest: value,
+                  interests: value
                     ? [
                         ...p.interests.filter(
                           (v) => v !== p.otherInterest
                         ),
-                        e.target.value,
+                        value,
                       ]
                     : p.interests.filter(
                         (v) => v !== p.otherInterest
                       ),
-                }))
-              }
+                }));
+
+                setErrors((prev) => ({
+                  ...prev,
+                  interests: "",
+                  otherInterest: value.trim() ? "" : prev.otherInterest,
+                }));
+              }}
+
               className="mt-4 w-full rounded-full px-5 py-3 border focus:ring-2 focus:ring-brand/40 animate-fadeIn"
             />
           )}
+
+          {errors.interests && (
+            <p className="text-red-500 text-s text-center mt-2"><span className="text-red-800">**</span>{errors.interests}<span className="text-red-800">**</span></p>
+          )}
+
+          {errors.otherInterest && (
+            <p className="text-red-500 text-s text-center mt-2"><span className="text-red-800">**</span>{errors.otherInterest}<span className="text-red-800">**</span></p>
+          )}
+
+
         </section>
 
         {/* CTA */}
         <div className="mt-12 text-center">
           <button
             onClick={handleSubmit}
-            className="px-12 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+            disabled={submitting}
+            className={`px-12 py-3 rounded-full text-white font-semibold shadow-lg transition-all
+              ${
+                submitting
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-amber-500 to-orange-500 hover:shadow-xl hover:-translate-y-0.5"
+              }
+            `}
           >
             Explore Career Options →
           </button>
