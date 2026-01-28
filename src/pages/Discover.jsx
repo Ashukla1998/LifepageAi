@@ -91,7 +91,7 @@ const interests = [
   const handleSubmit = async() => {
     if (!validate() || submitting) return;
      setSubmitting(true);
-    navigate("/aicareers", { state: { discoverData: form } });
+    navigate("/sugestedcareers", { state: { discoverData: form } });
     // console.log("Forms Data",form);
     setSubmitting(false);
   };

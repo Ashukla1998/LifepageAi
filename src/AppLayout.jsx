@@ -41,7 +41,7 @@ export default function AppLayout() {
           <Route path="/careers" element={<Advisor />} />
           <Route path="/careers/:profileid" element={<Blog />} />
           <Route path="/discover" element={<Discover />}/>
-          <Route path="/aicareers" element={<AiCareers />}/>
+          <Route path="/sugestedcareers" element={<AiCareers />}/>
         </Routes>
       </div>
 
