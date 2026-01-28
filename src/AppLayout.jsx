@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import { ToastContainer } from "react-toastify";
 import useIsMobile from "./hooks/IsMobile";
 import Discover from "./pages/Discover";
+import AiCareers from "./pages/AiCareers";
 // import ChatBot from "./pages/ChatBot";
 
 
@@ -40,6 +41,7 @@ export default function AppLayout() {
           <Route path="/careers" element={<Advisor />} />
           <Route path="/careers/:profileid" element={<Blog />} />
           <Route path="/discover" element={<Discover />}/>
+          <Route path="/aicareers" element={<AiCareers />}/>
         </Routes>
       </div>
 

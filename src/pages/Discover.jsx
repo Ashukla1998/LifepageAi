@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState,useEffect } from "react";
+import { useNavigate,useLocation  } from "react-router-dom";
+import axios from "axios";
+import { buildCareerPrompt } from "../hooks/buildCareerPrompt";
+import { fetchCareers } from "../api/careerApi";
 
 export default function Discover() {
   const navigate = useNavigate();
@@ -43,8 +46,9 @@ export default function Discover() {
     "Others",
   ];
 
-  const handleSubmit = () => {
-    navigate("/careers", { state: { discoverData: form } });
+  const handleSubmit = async() => {
+    navigate("/aicareers", { state: { discoverData: form } });
+    console.log("Forms Data",form);
   };
 
   const chipBase =

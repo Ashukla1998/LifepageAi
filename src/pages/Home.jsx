@@ -17,7 +17,7 @@ export default function Home() {
   };
 
   const handleSkip = () => {
-    toast.info("Exploring career paths freely...");
+    toast.info("Explore career paths freely...");
     navigate("/discover");
   };
 
