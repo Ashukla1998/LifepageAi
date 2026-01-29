@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import useIsMobile from "./hooks/IsMobile";
 import Discover from "./pages/Discover";
 import AiCareers from "./pages/AiCareers";
+import Footer from "./components/Footer";
 // import ChatBot from "./pages/ChatBot";
 
 
@@ -29,10 +30,10 @@ export default function AppLayout() {
         font-primary
         flex flex-col items-center
         px-4 sm:px-6
-        py-6 sm:py-0
+        py-6 sm:py-0 mt-24
       `}
     >
-      {showNavbar && <Navbar />}
+      <Navbar />
 
       <div className={`
         w-full flex justify-center
@@ -47,6 +48,8 @@ export default function AppLayout() {
           <Route path="/sugestedcareers" element={<AiCareers />}/>
         </Routes>
       </div>
+
+      <Footer/>
 
       <ToastContainer
         position={isMobile ? "bottom-center" : "top-right"}

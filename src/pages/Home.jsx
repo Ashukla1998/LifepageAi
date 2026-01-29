@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import path from "../assets/path.png";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -100,25 +100,30 @@ export default function Home() {
         <button
           onClick={handleExplore}
           className="
-            w-[200px]
-            px-10 py-4
-            rounded-full
-            bg-buttoncolor text-white font-semibold
-            active:scale-95
-            transition-all
-            inline-flex items-center justify-center gap-2
+            bg-[#2196f3]
+            text-white
+            font-bold
+            text-lg
+            px-6 py-3
+            rounded
+            shadow-[0_8px_16px_rgba(0,0,0,0.2),0_6px_20px_rgba(0,0,0,0.19)]
+            hover:opacity-90
+            transition
+            inline-flex items-center gap-2
           "
         >
           <span>Explore</span>
-          <img src={path} alt="Explore" className="w-6 h-6" />
+          {/* <ArrowRightIcon className="h-5 w-5" /> */}
+          <img src="path.png" alt="Explore path" className="h-6 w-6" />
         </button>
+
       </div>
 
       {/* OR Divider */}
       <div className="flex items-center gap-4 mt-8 sm:mt-10 text-textSecondary">
-        <div className="flex-1 h-px bg-black/20" />
+        <div className="flex-1 h-px bg-[linear-gradient(to_right,rgba(248,158,84,0),rgba(248,158,84,0.75),rgba(248,158,84,0))] border-0" />
         <span className="text-xs sm:text-sm font-medium">OR</span>
-        <div className="flex-1 h-px bg-black/20" />
+        <div className="flex-1 h-px bg-[linear-gradient(to_right,rgba(248,158,84,0),rgba(248,158,84,0.75),rgba(248,158,84,0))] border-0" />
       </div>
 
       {/* Discover Button */}
@@ -126,17 +131,20 @@ export default function Home() {
         <button
           onClick={handleSkip}
           className="
-            w-[200px]
-            px-10 py-4
-            rounded-full
-            bg-buttoncolor text-white font-semibold
-            active:scale-95
-            transition-all
-            inline-flex items-center justify-center gap-2
+            bg-[#2196f3]
+            text-white
+            font-bold
+            text-lg
+            px-6 py-3
+            rounded
+            shadow-[0_8px_16px_rgba(0,0,0,0.2),0_6px_20px_rgba(0,0,0,0.19)]
+            hover:opacity-90
+            transition
+            inline-flex items-center gap-2
           "
         >
           <span>Discover</span>
-          <img src={path} alt="Discover" className="w-6 h-6" />
+          <img src="support/research.png" alt="Discover" className="w-6 h-6" />
         </button>
 
         {/* Tooltip */}

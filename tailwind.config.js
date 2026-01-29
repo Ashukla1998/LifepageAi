@@ -11,7 +11,7 @@ module.exports = {
       },
       colors: {
         brand: "#E46C09",
-        base: "#FFFBEB",
+        // base: "#FFFBEB",
         textPrimary: "#3F2D1C",
         textSecondary: "#6B7280",
         buttoncolor: "#2196f3",
