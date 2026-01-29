@@ -27,15 +27,18 @@ export default function AppLayout() {
         min-h-screen w-full
         bg-gradient-to-b from-bgStart to-bgEnd
         font-primary
-        flex flex-col
-        ${isHome ? "items-center justify-center" : "items-start"}
+        flex flex-col items-center
         px-4 sm:px-6
         py-6 sm:py-0
       `}
     >
       {showNavbar && <Navbar />}
 
-      <div className="w-full flex justify-center">
+      <div className={`
+        w-full flex justify-center
+        ${isHome ? "min-h-screen items-center" : "items-start"}
+      `}
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/careers" element={<Advisor />} />

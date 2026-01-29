@@ -14,6 +14,8 @@ module.exports = {
         base: "#FFFBEB",
         textPrimary: "#3F2D1C",
         textSecondary: "#6B7280",
+        buttoncolor: "#2196f3",
+        homecolor: "#ffc000",
       },
     },
   },

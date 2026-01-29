@@ -33,7 +33,7 @@ export default function Navbar() {
           onClick={handleRestart}
           className="
             relative group
-            w-full sm:w-auto
+            w-[200px]
             px-8 sm:px-10 py-3 sm:py-4
             rounded-full
             bg-brand text-white font-semibold
@@ -44,7 +44,7 @@ export default function Navbar() {
           "
         >
           <span>lifePage.in/ai</span>
-          <MdOutlineRestartAlt size={20} />
+          <MdOutlineRestartAlt size={30} />
 
           {/* TOOLTIP */}
           <span
