@@ -29,42 +29,9 @@ export default function Navbar() {
       >
         <img src={`${import.meta.env.BASE_URL}icon.png`} alt="Lifepage.in" className="w-10 h-10" />
         {/* RESET BUTTON WITH TOOLTIP */}
-        <button
-          onClick={handleRestart}
-          className="
-            relative group
-            w-[200px]
-            px-8 sm:px-10 py-3 sm:py-4
-            rounded-full
-            bg-brand text-white font-semibold
-            hover:bg-amber-600
-            active:scale-95
-            transition-all
-            inline-flex items-center gap-2
-          "
-        >
-          <span>lifePage.in/ai</span>
-          <MdOutlineRestartAlt size={30} />
-
-          {/* TOOLTIP */}
-          <span
-            className="
-              pointer-events-none
-              absolute -bottom-10 left-1/2 -translate-x-1/2
-              whitespace-nowrap
-              rounded-md
-              bg-black text-white
-              text-xs font-medium
-              px-2 py-1
-              opacity-0 scale-95
-              group-hover:opacity-100 group-hover:scale-100
-              transition duration-200 ease-out
-              z-50
-            "
-          >
-            Restart & go home
-          </span>
-        </button>
+        <a href="/">
+          <h1 className="text-blue-400 underline">www.lifepage.in/ai</h1>
+        </a>
       </nav>
     </header>
   );
