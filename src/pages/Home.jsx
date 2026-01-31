@@ -18,6 +18,50 @@ export default function Home() {
 
   return (
     <section className="py-16">
+      <div className="w-full bg-[#f2f2f2] mb-1">
+        <div className="flex flex-col items-center py-16">
+
+          {/* TITLE */}
+          <h1
+            className="
+              text-[34px]
+              font-semibold
+              text-[#555555]
+              mb-10
+            "
+          >
+            Lifepage AI
+          </h1>
+
+          {/* WHITE INFO BOX */}
+          <div
+            className="
+              w-full
+              max-w-[560px]
+              bg-white
+              border
+              border-[#8a8a8a]
+              rounded-[4px]
+              px-6
+              py-5
+              text-[16px]
+              text-black
+              leading-[28px]
+            "
+          >
+            <p className="mb-6 text-left">
+              Install LifePage - free Career Counselling App!
+            </p>
+
+            <p className="text-left">
+              Invest in your 14 hour LifePage Career Plan to understand your strengths,
+              explore suitable career options, and move confidently towards your dream job.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
       <div className="flex justify-center">
         <div
           className="
@@ -36,56 +80,12 @@ export default function Home() {
             Find a Career Path
           </h1>
 
-          {/* WHITE BOX */}
-          <div
-            className="
-              bg-white
-              px-6
-              py-5
-              mb-6
-            "
-          >
-            <div className="text-sm font-semibold leading-loose">
-              Install LifePage <br />
-              ⇩ <br />
-              Register Account <br />
-              ⇩ <br />
-              Activate Account
-            </div>
-
-            <div className="flex justify-center gap-4 mt-4">
-              <a
-            href="https://itunes.apple.com/us/app/lifepage-career-talks/id1422221590?ls=1&mt=8"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="https://storage.googleapis.com/lifepage-video-android/login/app-store.png"
-              alt="Career Counselling iOS"
-              className="h-[35px]"
-            />
-          </a>
-              
-            <a
-              href="https://play.google.com/store/apps/details?id=com.lifepage.jfh&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="https://storage.googleapis.com/lifepage-video-android/login/play-store-logo-33868.png"
-                alt="Career Counselling Android"
-                className="h-[35px]"
-              />
-            </a>
-            </div>
-          </div>
-
           {/* LABEL */}
           <p className="text-sm mb-2">
             Which Career are you interested in?
           </p>
 
-          {/* INPUT — LEGACY STYLE */}
+          {/* INPUT */}
           <input
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -109,28 +109,30 @@ export default function Home() {
           />
 
           {/* EXPLORE */}
-           <div className="mt-8 sm:mt-10 flex justify-center">
-        <button
-          onClick={handleExplore}
-          className="
-            bg-[#2196f3]
-            text-white
-            font-bold
-            text-lg
-            px-6 py-3
-            rounded
-            shadow-[0_8px_16px_rgba(0,0,0,0.2),0_6px_20px_rgba(0,0,0,0.19)]
-            hover:opacity-90
-            transition
-            inline-flex items-center gap-2
-          "
-        >
-          <span>Explore</span>
-          {/* <ArrowRightIcon className="h-5 w-5" /> */}
-          <img src={`${import.meta.env.BASE_URL}support/path.png`} alt="Explore path" className="h-6 w-6" />
-        </button>
-
-      </div>
+          <div className="mt-8 sm:mt-10 flex justify-center">
+            <button
+              onClick={handleExplore}
+              className="
+                bg-[#2196f3]
+                text-white
+                font-bold
+                text-lg
+                px-6 py-3
+                rounded
+                shadow-[0_8px_16px_rgba(0,0,0,0.2),0_6px_20px_rgba(0,0,0,0.19)]
+                hover:opacity-90
+                transition
+                inline-flex items-center gap-2
+              "
+            >
+              <span>Explore</span>
+              <img
+                src={`${import.meta.env.BASE_URL}support/path.png`}
+                alt="Explore path"
+                className="h-6 w-6"
+              />
+            </button>
+          </div>
 
           {/* OR */}
           <div className="flex items-center gap-4 mt-8 sm:mt-10 text-textSecondary">
@@ -141,25 +143,29 @@ export default function Home() {
 
           {/* DISCOVER */}
           <div className="mt-8 sm:mt-10 flex justify-center relative group">
-        <button
-          onClick={handleDiscover}
-          className="
-            bg-[#2196f3]
-            text-white
-            font-bold
-            text-lg
-            px-6 py-3
-            rounded
-            shadow-[0_8px_16px_rgba(0,0,0,0.2),0_6px_20px_rgba(0,0,0,0.19)]
-            hover:opacity-90
-            transition
-            inline-flex items-center gap-2
-          "
-        >
-          <span>Discover</span>
-          <img src={`${import.meta.env.BASE_URL}support/research.png`} alt="Discover" className="w-6 h-6" />
-        </button>
-        </div>
+            <button
+              onClick={handleDiscover}
+              className="
+                bg-[#2196f3]
+                text-white
+                font-bold
+                text-lg
+                px-6 py-3
+                rounded
+                shadow-[0_8px_16px_rgba(0,0,0,0.2),0_6px_20px_rgba(0,0,0,0.19)]
+                hover:opacity-90
+                transition
+                inline-flex items-center gap-2
+              "
+            >
+              <span>Discover</span>
+              <img
+                src={`${import.meta.env.BASE_URL}support/research.png`}
+                alt="Discover"
+                className="w-6 h-6"
+              />
+            </button>
+          </div>
 
         </div>
       </div>

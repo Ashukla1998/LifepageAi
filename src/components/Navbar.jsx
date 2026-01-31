@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -15,9 +15,11 @@ const menu = [
 ];
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="fixed top-0 left-0 w-full z-50">
-      
+
       {/* ================= TOP BAR ================= */}
       <div
         className="h-14 flex items-center justify-between px-4 text-white"
@@ -27,75 +29,125 @@ export default function Navbar() {
           backgroundSize: "cover",
         }}
       >
-        <div className="flex items-center">
-          <img src={`${BASE}icon.png`} alt="LifePage" className="h-10" />
-        </div>
+        <img src={`${BASE}icon.png`} alt="LifePage" className="h-10" />
 
-        <div className="flex gap-4">
-          <a
-            href="https://itunes.apple.com/us/app/lifepage-career-talks/id1422221590?ls=1&mt=8"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="https://storage.googleapis.com/lifepage-video-android/login/app-store.png"
-              alt="Career Counselling iOS"
-              className="h-[35px]"
-            />
-          </a>
-              
-            <a
-              href="https://play.google.com/store/apps/details?id=com.lifepage.jfh&hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="https://storage.googleapis.com/lifepage-video-android/login/play-store-logo-33868.png"
-                alt="Career Counselling Android"
-                className="h-[35px]"
-              />
-            </a>
+        <div className="flex gap-3">
+          <img
+            src="https://storage.googleapis.com/lifepage-video-android/login/app-store.png"
+            className="h-[35px]"
+            alt="iOS"
+          />
+          <img
+            src="https://storage.googleapis.com/lifepage-video-android/login/play-store-logo-33868.png"
+            className="h-[35px]"
+            alt="Android"
+          />
         </div>
       </div>
 
-      {/* ================= LEGACY MENU BAR ================= */}
-      <nav className="bg-[#363636] text-white">
-        <div className="hidden md:flex h-[58px] items-center">
+      {/* ================= DESKTOP MENU ================= */}
+      <nav className="hidden md:block bg-[#3a3a3a] text-white">
+        <div className="flex h-[58px] items-center">
           {menu.map((item) => (
             <a
               key={item.label}
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="
-                flex items-center
-                px-4 py-[14px]
-                text-[17px]
-                leading-none
-                hover:bg-[#f89e54]
-              "
+              className="flex items-center px-4 py-[14px] text-[17px] leading-none hover:bg-[#f57c00]"
             >
               <img
                 src={`${BASE}support/${item.icon}`}
                 alt={item.label}
-                className={`
-                  h-[15px]
-                  mr-[4px]
-                  -ml-[2px]
-                  ${item.fix ? "translate-y-[-1px]" : ""}
-                `}
+                className={`h-[15px] mr-[6px] -ml-[2px] ${
+                  item.fix ? "translate-y-[-1px]" : ""
+                }`}
               />
               {item.label}
             </a>
           ))}
         </div>
-
-        {/* ================= MOBILE BAR ================= */}
-        <div className="md:hidden flex items-center h-[58px] px-4">
-          <span className="text-xl">☰</span>
-        </div>
       </nav>
-      
+
+      {/* ================= MOBILE NAV ================= */}
+      <nav className="md:hidden bg-[#3a3a3a] text-white relative">
+      {/* <nav className={`md:hidden text-white relative ${ open ? "bg-[#f57c00]" : "bg-[#3a3a3a]" }`}> */}
+
+      {/* TOP MOBILE ROW */}
+      <div className="flex h-[58px]">
+
+        {/* HOME — ORANGE */}
+        <a
+          href="https://www.lifepage.in/"
+          className="flex items-center px-4 bg-[#f57c00] text-white"
+        >
+          <img
+            src={`${BASE}support/home.png`}
+            alt="Home"
+            className="h-[15px] mr-[6px] -ml-[2px] translate-y-[-1px]"
+          />
+          Home
+        </a>
+
+        {/* FILL SPACE */}
+        {/* <div className="flex-1 bg-[#3a3a3a] /> */}
+        <div className={`flex-1 ${ open ? "bg-[#f57c00]" : "bg-[#3a3a3a]" }`}/>
+
+
+        {/* HAMBURGER */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="px-4 flex items-center bg-[#f57c00] text-white text-2xl"
+          aria-label="Menu"
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* FULL-WIDTH DROPDOWN */}
+      {open && (
+        <div
+          className="
+            absolute
+            left-0
+            top-[58px]
+            w-full
+            bg-[#3a3a3a]
+            z-50
+          "
+        >
+          {menu
+            .filter(item => item.label !== "Home")
+            .map(item => (
+              <a
+                key={item.label}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="
+                  flex items-center
+                  w-full
+                  px-4
+                  py-[12px]
+                  text-[16px]
+                  border-b
+                  border-[#4a4a4a]
+                  hover:bg-[#f57c00]
+                "
+              >
+                <img
+                  src={`${BASE}support/${item.icon}`}
+                  alt={item.label}
+                  className="h-[15px] mr-[6px] -ml-[2px]"
+                />
+                {item.label}
+              </a>
+            ))}
+        </div>
+      )}
+      </nav>
+
     </header>
   );
 }

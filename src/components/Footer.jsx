@@ -1,5 +1,10 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import bloglist from "../api/bloglist";
+import { tcit, cit } from "../api/gsmcity";
 const BASE = import.meta.env.BASE_URL;
 const SITE_ROOT = "https://www.lifepage.in";
+
 /* ================= LEGACY MENU DATA ================= */
 const legacyFooterMenu = [
   { label: "Home", icon: "home.png", link: "https://www.lifepage.in/index.php" },
@@ -23,11 +28,18 @@ const legacyFooterMenu = [
 ];
 
 export default function Footer() {
+  // SAME AS PHP: shuffle($bloglist) + limit 5
+  const readAboutList = [...bloglist]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 5);
+
   return (
-    <div className="w-full bg-white text-[#262626] text-[80%] mt-24">
+    <div className="lifepage-footer w-full max-w-[1100px] px-4 mx-auto text-center">
       <div className="flex justify-center">
         <div className="w-full max-w-[600px] px-2 text-center">
+
           <hr className="my-12 h-px border-0 bg-gradient-to-r from-transparent via-[#f89e54] to-transparent" />
+
           {/* STUDY ABROAD CARD */}
           <div className="bg-[#262626] rounded shadow-lg p-1">
             <img
@@ -44,7 +56,6 @@ export default function Footer() {
             />
           </div>
 
-          {/* YELLOW SEPARATOR */}
           <hr className="my-12 h-px border-0 bg-gradient-to-r from-transparent via-[#f89e54] to-transparent" />
 
           {/* LEARN ABOUT CARD */}
@@ -59,47 +70,23 @@ export default function Footer() {
 
             <GreyLine />
 
-            <Section title="Profiles Of" />
+            {/* PROFILES OF */}
+            <ProfilesOf />
 
-            <Profile
-              name="Dr Luana Amaro Muniz"
-              role="Psychiatrist | Brazilian Government"
-              link="http://www.lifepage.in/page/luanaamaromuniz"
-            />
-            <Profile
-              name="Dr Rishabh Kumar Chaturvedi"
-              role="Retd. Assistant Director | Archaeological Survey of India"
-              link="http://www.lifepage.in/page/rishabhkumarchaturvedi"
-            />
-            <Profile
-              name="Vineet KKN Panchhi"
-              role="Founder & Creative Director | Jingles India"
-              link="http://www.lifepage.in/page/vineetkknpanchhi"
-            />
-            <Profile
-              name="Shabhnam Praveen"
-              link="http://www.lifepage.in/page/shabhnampraveen"
-            />
-            <Profile
-              name="Nimmish Chaudhary"
-              role="Account Manager | LifePage"
-              link="http://www.lifepage.in/page/nimmishchaudhary"
-            />
-
-            <RightLink
-              href="https://www.lifepage.in/pages.php"
-              label="Explore all LifePage Members"
-            />
-
-            <GreyLine />
-
+            {/* READ ABOUT */}
             <Section title="Read About" />
 
-            <Article link="https://blog.lifepage.in/mission-iit-jee-indias-biggest-tragedy" text="Mission IIT JEE – India’s biggest tragedy!" />
-            <Article link="https://blog.lifepage.in/resume-2-0-based-on-functional-areas-not-designations" text="Resume 2.0 – based on functional areas not designations" />
-            <Article link="https://blog.lifepage.in/whats-next-after-boards" text="What’s Next – After Boards?" />
-            <Article link="https://medium.com/@kapil.dehradun/free-career-counselling-4ef9ec696e38" text="Free Career Counselling" />
-            <Article link="https://blog.lifepage.in/education-system-in-india" text="Education System in India" />
+            {readAboutList.map((item, index) => (
+              <div key={index} className="my-3">
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.title}
+                </a>
+              </div>
+            ))}
 
             <RightLink
               href="https://blog.lifepage.in/category/career-choice/"
@@ -107,15 +94,18 @@ export default function Footer() {
             />
 
             <GreyLine />
-
+            <InterestingCareerArticles />
+            {/* <GreyLine/> */}
+            <CareerCounsellingCities/>
             <Section title="Follow Us" />
-
+   
             <div className="grid grid-cols-6 gap-4 text-center my-6">
-              {["fb","youtube","instagram","twitter","Linkedin","Quora"].map(i => (
+              {["fb", "youtube", "instagram", "twitter", "Linkedin", "Quora"].map((i) => (
                 <img
                   key={i}
                   src={`${BASE}support/${i}.png`}
                   className="h-10 mx-auto"
+                  alt={i}
                 />
               ))}
             </div>
@@ -125,21 +115,16 @@ export default function Footer() {
           {/* ================= LEGACY FOOTER MENU ================= */}
           <div className="w-full flex justify-center mt-16 text-[#505050]">
             <div className="text-center">
-
               <table
                 cellPadding="5"
                 cellSpacing="3"
                 className="mx-auto"
-                style={{
-                  borderCollapse: "separate",
-                  borderSpacing: "0 8px",
-                }}
+                style={{ borderCollapse: "separate", borderSpacing: "0 8px" }}
               >
-
                 <tbody>
                   {legacyFooterMenu.map((item, i) => (
                     <tr key={i} valign="bottom">
-                      <td className="whitespace-nowrap bg-[#505050] text-white">
+                      <td className="whitespace-nowrap w-[139px] h-[38px] bg-[#505050] text-white">
                         <a
                           href={item.link}
                           target={item.blank ? "_blank" : "_self"}
@@ -149,8 +134,9 @@ export default function Footer() {
                           <img
                             src={`${BASE}support/${item.icon}`}
                             className="h-[25px] pl-1 pb-[2px]"
+                            alt={item.label}
                           />
-                          <span className="text-[16px] px-3">
+                          <span className="px-3 text-[14px] font-normal leading-[1.45] text-white">
                             {item.label}
                           </span>
                         </a>
@@ -171,6 +157,7 @@ export default function Footer() {
                     src={`${BASE}support/helpbanner.jpg`}
                     width="150"
                     className="mx-auto border border-[#505050] rounded"
+                    alt="WhatsApp Help"
                   />
                 </a>
               </div>
@@ -184,24 +171,85 @@ export default function Footer() {
   );
 }
 
-/* ---------- HELPERS ---------- */
+/* ================= PROFILES OF (AXIOS, EXACT PHP LOGIC) ================= */
+
+const ProfilesOf = () => {
+  const [profiles, setProfiles] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://lifepage.in/n/api/getPagesData",
+        { id: "1234" },
+        { headers: { Accept: "application/json" } }
+      )
+      .then((res) => {
+        const records = res?.data?.data || [];
+        setTotal(records.length);
+
+        const shuffled = [...records].sort(() => Math.random() - 0.5);
+
+        const selected = [];
+        for (let i = 0; i < shuffled.length; i++) {
+          if (selected.length >= 5) break;
+          if (shuffled[i].profilepic && shuffled[i].profilepic.length > 5) {
+            selected.push(shuffled[i]);
+          }
+        }
+
+        setProfiles(selected);
+      })
+      .catch(console.error);
+  }, []);
+
+  return (
+    <>
+      <Section title="Profiles Of" />
+
+      {profiles.map((p) => (
+        <div key={p.profileid} className="my-4">
+          <a href={`https://www.lifepage.in/page/${p.profileid}`}>
+            {p.name}
+          </a>
+          {(p.designation || p.organisation) && (
+            <div>
+              {p.designation}
+              {p.designation && p.organisation && " | "}
+              {p.organisation}
+            </div>
+          )}
+        </div>
+      ))}
+
+      <RightLink
+        href="https://www.lifepage.in/pages.php"
+        label={`Explore all ${total} LifePage Members`}
+      />
+
+      <GreyLine />
+    </>
+  );
+};
+
+/* ================= HELPERS ================= */
 
 const Section = ({ title }) => (
-  <h2 className="text-lg font-semibold my-6">{title}</h2>
+  <h2 className="my-4">{title}</h2>
 );
 
 const RightLink = ({ href, label }) => (
   <div className="text-right my-6">
-    <a href={href} className="font-semibold inline-flex items-center gap-2">
+    <a href={href} className="inline-flex items-center gap-2">
       [{label}]
-      <img src={`${import.meta.env.BASE_URL}support/right.png`} className="h-6" />
+      <img src={`${BASE}support/right.png`} className="h-6" />
     </a>
   </div>
 );
 
 const ExternalButton = ({ href, label }) => (
   <a href={href} target="_blank" rel="noopener noreferrer">
-    <button className="bg-[#2196f3] text-white font-bold text-lg px-6 py-3 rounded shadow-lg">
+    <button className="bg-[#2196f3] text-white px-6 py-3 rounded shadow-lg">
       {label}
     </button>
   </a>
@@ -211,17 +259,74 @@ const GreyLine = () => (
   <hr className="my-8 border-t border-[#999]" />
 );
 
-const Profile = ({ name, role, link }) => (
-  <div className="my-4">
-    <a href={link} className="font-bold">{name}</a>
-    {role && <div>{role}</div>}
-  </div>
+const LegacyRow = ({ children }) => (
+  <>
+    <table cellPadding="0" cellSpacing="0">
+      <tbody>
+        <tr>
+          <td>{children}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div className="spacer" />
+  </>
 );
 
-const Article = ({ link, text }) => (
-  <div className="my-3">
-    <a href={link} target="_blank" className="font-bold">
-      {text}
-    </a>
-  </div>
-);
+const CareerCounsellingCities = () => {
+  const top = [...tcit].sort(() => Math.random() - 0.5).slice(0, 2);
+  const other = [...cit].sort(() => Math.random() - 0.5).slice(0, 3);
+
+  return [...top, ...other].map((city, i) => (
+    <LegacyRow key={i}>
+      <a href={`https://www.lifepage.in/career-counselling/${city}`}>
+        <strong>Career Counselling in {city}</strong>
+      </a>
+    </LegacyRow>
+  ));
+};
+
+const InterestingCareerArticles = () => {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://lifepage.in/n/api/seoSession", {
+        headers: { Accept: "application/json" },
+      })
+      .then((res) => {
+        const records = res?.data?.data || [];
+        setArticles(records);
+      })
+      .catch((err) => {
+        console.error("SEO Session API error:", err);
+      });
+  }, []);
+
+  return (
+    <>
+      <Section title="Interesting Career Articles" />
+
+      {articles.map((item, index) => (
+        <div key={index} className="my-3">
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Career in {item.topic}
+          </a>
+          <br />
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {item.link}
+          </a>
+        </div>
+      ))}
+
+      <GreyLine />
+    </>
+  );
+};

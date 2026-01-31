@@ -7,11 +7,93 @@ html, body {
   padding: 0;
   font-family: 'Lato', sans-serif;
   background-color: #f5f5f3;
+  letter-spacing: 0;
+  color: #333;
 }
 
 /* compensate fixed navbar */
 body {
   padding-top: 72px;
   line-height: 1.75;
+  font-weight: 500;
 }
 
+/* ===============================
+   LifePage Footer — EXACT MATCH
+================================ */
+
+/* Footer base */
+.lifepage-footer {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #262626;
+}
+
+/* Section headings */
+.lifepage-footer h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 18px 0 10px;
+}
+
+/* NORMAL links (default) */
+.lifepage-footer a {
+  font-size: 13px;
+  font-weight: 400;
+  color: #262626;
+  text-decoration: none;
+}
+
+/* Profile names */
+.lifepage-footer .profiles a {
+  font-weight: 700;
+}
+
+/* Designation / organisation */
+.lifepage-footer .profiles div {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* Read About titles */
+.lifepage-footer .read-about a {
+  font-weight: 700;
+}
+
+/* Interesting Career Articles */
+.lifepage-footer .interesting a {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Career Counselling cities */
+.lifepage-footer .cities a {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ===============================
+   Legacy Footer Menu (CRITICAL)
+================================ */
+
+.lifepage-footer table td {
+  padding: 5px 0;
+}
+
+.lifepage-footer table td span {
+  font-size: 13px;      /* matches <font size="3"> */
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Icons in legacy menu */
+.lifepage-footer table td img {
+  height: 25px;
+  padding-left: 4px;
+  padding-bottom: 2px;
+}
+.lifepage-footer table td {
+  padding: 5px;
+  line-height: 1.45;
+}
