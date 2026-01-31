@@ -114,7 +114,7 @@ export default function Home() {
         >
           <span>Explore</span>
           {/* <ArrowRightIcon className="h-5 w-5" /> */}
-          <img src={`${import.meta.env.BASE_URL}path.png`} alt="Explore path" className="h-6 w-6" />
+          <img src={`${import.meta.env.BASE_URL}support/path.png`} alt="Explore path" className="h-6 w-6" />
         </button>
 
       </div>
