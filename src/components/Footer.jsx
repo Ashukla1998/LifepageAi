@@ -1,287 +1,237 @@
 import React from "react";
 
+/* ---------- CONSTANTS ---------- */
+const BASE = import.meta.env.BASE_URL;
+const SITE_ROOT = "https://www.lifepage.in";
+
+/* ---------- DATA ---------- */
+const legacyNav = [
+  { label: "Home", icon: "home.png", link: `${SITE_ROOT}/` },
+  { label: "Abroad", icon: "studyabroad.png", link: `${SITE_ROOT}/studyabroad.php` },
+  { label: "Plan", icon: "plan.png", link: `${SITE_ROOT}/plan.php` },
+  { label: "Talks", icon: "list.png", link: `${SITE_ROOT}/careers.php` },
+  { label: "Philosophy", icon: "philosophy.png", link: `${SITE_ROOT}/philosophy.php` },
+  { label: "Seminar", icon: "choose.png", link: `${SITE_ROOT}/choose.php` },
+  { label: "Workshop", icon: "placement.png", link: `${SITE_ROOT}/placement.php` },
+  { label: "Pages", icon: "pages.png", link: `${SITE_ROOT}/pages.php` },
+  { label: "Advisors", icon: "advisors.png", link: `${SITE_ROOT}/advisors.php` },
+  { label: "Discuss", icon: "discuss.png", link: `${SITE_ROOT}/discuss.php` },
+  { label: "Meet", icon: "meet.png", link: `${SITE_ROOT}/meet.php` },
+  { label: "Advisor", icon: "advisor.png", link: `${SITE_ROOT}/advisor.php` },
+  { label: "Story", icon: "story.png", link: `${SITE_ROOT}/story.php` },
+  { label: "Fine Print", icon: "fineprint.png", link: `${SITE_ROOT}/fineprint.php` },
+  { label: "Links", icon: "links.png", link: `${SITE_ROOT}/links.php` },
+  { label: "Blog", icon: "blog.png", link: `https://blog.lifepage.in` },
+  { label: "Testimonials", icon: "testimonials.png", link: `${SITE_ROOT}/testimonials.php` },
+  { label: "Follow", icon: "follow.png", link: `${SITE_ROOT}/follow.php` },
+];
+
+const socialIcons = [
+  { name: "fb", link: "https://www.facebook.com/lifepage" },
+  { name: "youtube", link: "https://www.youtube.com/@lifepage" },
+  { name: "instagram", link: "https://www.instagram.com/lifepage" },
+  { name: "twitter", link: "https://twitter.com/lifepage" },
+  { name: "Linkedin", link: "https://www.linkedin.com/company/lifepage" },
+  { name: "Quora", link: "https://www.quora.com/profile/LifePage" },
+];
+
+/* ---------- COMPONENT ---------- */
 export default function Footer() {
-    return (
-        <div
-            className="w-full text-[#262626] mt-32"
-            style={{ fontSize: "80%" }}
-        >
-            {/* MAIN CONTAINER */}
-            <div className="w-full flex justify-center">
-                <div className="w-full max-w-[600px] px-2 text-center">
+  return (
+    <div className="w-full mt-32 text-[#262626]" style={{ fontSize: "80%" }}>
+      <div className="flex justify-center">
+        <div className="w-full max-w-[600px] px-2 text-center">
 
-                    {/* TOP YELLOW SEPARATOR */}
-                    <div
-                        className="w-full h-px
-            bg-[linear-gradient(to_right,rgba(248,158,84,0),rgba(248,158,84,0.75),rgba(248,158,84,0))]"
-                    />
+          <Separator />
 
-                    <br /><br /><br /><br />
+          {/* STUDY ABROAD */}
+          <Card>
+            <img
+              src={`${BASE}support/abroad.jpg`}
+              alt="LifePage Study Abroad Program"
+              className="w-full"
+            />
+          </Card>
 
-                    {/* STUDY ABROAD CARD */}
-                    <div
-                        className="w-full bg-[#262626] text-white rounded
-            shadow-[0_4px_8px_rgba(0,0,0,0.2),0_3px_10px_rgba(0,0,0,0.19)]"
-                    >
-                        <div className="p-1">
-                            <img
-                                src="support/abroad.jpg"
-                                alt="LifePage Study Abroad Program"
-                                title="LifePage Study Abroad Program"
-                                className="w-full"
-                            />
-                        </div>
-                    </div>
+          <Spacing />
 
-                    {/* spacing */}
-                    <br /><br /><br />
+          <ExternalButton
+            href={`${SITE_ROOT}/studyabroad.php`}
+            label="Learn More"
+          />
 
-                    {/* LEARN MORE BUTTON */}
-                    <a
-                        href="https://www.lifepage.in/studyabroad.php"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <button
-                            className="bg-[#2196f3] text-white font-bold text-lg
-              px-6 py-3 rounded
-              shadow-[0_8px_16px_rgba(0,0,0,0.2),0_6px_20px_rgba(0,0,0,0.19)]"
-                        >
-                            &nbsp; Learn More &nbsp;
-                        </button>
-                    </a>
+          <Spacing xl />
 
-                    <br /><br /><br /><br /><br />
+          <Separator />
 
-                    {/* BOTTOM YELLOW SEPARATOR */}
-                    <div
-                        className="w-full h-px
-            bg-[linear-gradient(to_right,rgba(248,158,84,0),rgba(248,158,84,0.75),rgba(248,158,84,0))]"
-                    />
+          {/* LEARN ABOUT */}
+          <div className="border border-[#909090] bg-[#FBFBF3] p-4 text-left">
+            <SectionTitle title="Learn About" />
 
-                    <br /><br /><br /><br />
+            <RightLink
+              href={`${SITE_ROOT}/careers.php`}
+              label="Explore all Career Options"
+            />
 
-                    {/* LEARN ABOUT CARD */}
-                    <div
-                        className="w-full border border-[#909090]
-            bg-[#FBFBF3] text-[#262626] p-4 text-left"
-                    >
-                        <br /><br />
-                        <h2 className="text-xl font-semibold text-left">
-                            Learn About
-                        </h2>
-                        <br /><br />
+            <Divider />
 
-                        {/* EXPLORE CAREERS */}
-                        <div className="text-right">
-                            <h3 className="text-lg font-semibold">
-                                <a
-                                    href="https://www.lifepage.in/careers.php"
-                                    className="hover:underline inline-flex items-center gap-2"
-                                >
-                                    [Explore all Career Options]
-                                    <img
-                                        src="support/right.png"
-                                        alt="Right Arrow"
-                                        className="h-6"
-                                    />
-                                </a>
-                            </h3>
-                        </div>
+            <SectionTitle title="Profiles Of" />
+            <Profiles />
 
-                        <br /><br />
+            <RightLink
+              href={`${SITE_ROOT}/pages.php`}
+              label="Explore all LifePage Members"
+            />
 
-                        {/* GREY LINE */}
-                        <div className="w-full h-px bg-[#999]" />
-                        <br /><br />
+            <Divider />
 
-                        {/* PROFILES */}
-                        <h2 className="text-xl font-semibold">Profiles Of</h2>
-                        <br />
+            <b>Interesting Career Articles</b>
+            <ArticleLinks />
 
-                        {[
-                            {
-                                name: "Archana Mishra",
-                                url: "https://www.lifepage.in/page/archanamishra",
-                            },
-                            {
-                                name: "Sumit Bahuguna",
-                                role: "IT Manager | Zee Entertainment Enterprises Ltd",
-                                url: "https://www.lifepage.in/page/sumitbahuguna",
-                            },
-                            {
-                                name: "Sankhadip Bhattacharya",
-                                role: "Senior Geologist | ONGC Ltd",
-                                url: "https://www.lifepage.in/page/sankhadipbhattacharya",
-                            },
-                            {
-                                name: "Dr. Srishti Bhatia",
-                                role:
-                                    "Associate Director & Orthodontist | Bhatia Dentopulse",
-                                url: "https://www.lifepage.in/page/drsrishtibhatia",
-                            },
-                            {
-                                name: "Vishnupriya Kolipakam",
-                                role:
-                                    "Scientist C | Wildlife Institute of India",
-                                url: "https://www.lifepage.in/page/vishnupriyakolipakam",
-                            },
-                        ].map((p, i) => (
-                            <div key={i} className="mb-4">
-                                <a href={p.url} className="font-bold">
-                                    {p.name}
-                                </a>
-                                {p.role && <div>{p.role}</div>}
-                            </div>
-                        ))}
+            <Divider />
 
-                        <br />
+            <SectionTitle title="Follow Us" />
 
-                        {/* EXPLORE MEMBERS */}
-                        <div className="text-right">
-                            <h3 className="text-lg font-semibold">
-                                <a
-                                    href="https://www.lifepage.in/pages.php"
-                                    className="hover:underline inline-flex items-center gap-2"
-                                >
-                                    [Explore all LifePage Members]
-                                    <img
-                                        src="right.png"
-                                        alt="Right Arrow"
-                                        className="h-6"
-                                    />
-                                </a>
-                            </h3>
-                        </div>
-
-                        <br /><br />
-                        <div className="w-full h-px bg-[#999]" />
-                        <br /><br />
-                        {/* INTERESTING ARTICLES */}
-                        <b>Interesting Career Articles</b>
-                        <br /><br />
-
-                        Career in Political Economy Analysis:<br />
-                        <a href="http://paste4btc.com/eOPTSIcV" target="_blank" rel="noopener noreferrer">
-                            http://paste4btc.com/eOPTSIcV
-                        </a><br /><br />
-
-                        Career in Packaging Design:<br />
-                        <a href="https://5e203a8b426de.site123.me/" target="_blank" rel="noopener noreferrer">
-                            https://5e203a8b426de.site123.me/
-                        </a><br /><br />
-
-                        Career in Software Engineering:<br />
-                        <a href="https://articlewipe.com/?p=336591&preview=true&_preview_nonce=5d55a5e0b1" target="_blank" rel="noopener noreferrer">
-                            https://articlewipe.com/?p=336591
-                        </a><br /><br />
-
-                        Career in Accountancy:<br />
-                        <a href="https://theonlinearticleplace.com/?p=299340&preview=true&_preview_nonce=90a234418b" target="_blank" rel="noopener noreferrer">
-                            https://theonlinearticleplace.com/?p=299340
-                        </a><br /><br />
-
-                        Career in Navigation:<br />
-                        <a href="https://pearsonnewspress.com/?p=298711&preview=true&_preview_nonce=dee3630f98" target="_blank" rel="noopener noreferrer">
-                            https://pearsonnewspress.com/?p=298711
-                        </a>
-
-                        <br /><br />
-
-                        {/* GREY LINE */}
-                        <div className="w-full h-px bg-[#999]" />
-                        <br /><br />
-
-                        {/* FOLLOW US */}
-                        <h2 className="text-xl font-semibold text-left">
-                            Follow Us
-                        </h2>
-                        <br /><br />
-
-                        <div className="flex justify-center gap-6 flex-wrap">
-                            {[
-                                "fb",
-                                "youtube",
-                                "instagram",
-                                "twitter",
-                                "Linkedin",
-                                "Quora",
-                            ].map((icon, i) => (
-                                <img
-                                    key={i}
-                                    src={`support/${icon}.png`}
-                                    alt={icon}
-                                    className="h-10"
-                                />
-                            ))}
-                        </div>
-
-                        <br /><br /><br />
-
-                    </div>
-
-                    {/* BOTTOM LEGACY NAVIGATION */}
-                    <br /><br /><br />
-
-                    <div className="flex justify-center">
-                        <div className="text-sm" style={{ color: "#505050" }}>
-
-                            {[
-                                { label: "Home", icon: "home.png", link: "/ai/" },
-                                { label: "Abroad", icon: "studyabroad.png", link: "https://www.lifepage.in/studyabroad.php" },
-                                { label: "Plan", icon: "plan.png", link: "/ai/plan" },
-                                { label: "Talks", icon: "list.png", link: "https://www.lifepage.in/careers.php" },
-                                { label: "Philosophy", icon: "philosophy.png", link: "/ai/philosophy" },
-                                { label: "Seminar", icon: "choose.png", link: "/ai/choose" },
-                                { label: "Workshop", icon: "placement.png", link: "/ai/placement" },
-                                { label: "Pages", icon: "pages.png", link: "https://www.lifepage.in/pages.php" },
-                                { label: "Advisors", icon: "advisors.png", link: "/ai/advisors" },
-                                { label: "Discuss", icon: "discuss.png", link: "/ai/discuss" },
-                                { label: "Meet", icon: "meet.png", link: "/ai/meet" },
-                                { label: "Advisor", icon: "advisor.png", link: "/ai/advisor" },
-                                { label: "Story", icon: "story.png", link: "/ai/story" },
-                                { label: "Fine Print", icon: "fineprint.png", link: "/ai/fineprint" },
-                                { label: "Links", icon: "links.png", link: "/ai/links" },
-                                { label: "Blog", icon: "blog.png", link: "https://blog.lifepage.in" },
-                                { label: "Testimonials", icon: "testimonials.png", link: "/ai/testimonials" },
-                                { label: "Follow", icon: "follow.png", link: "/ai/follow" },
-                            ].map((item, i) => (
-                                <div
-                                    key={i}
-                                    className="mb-2"
-                                    style={{
-                                        backgroundColor: "#505050",
-                                        whiteSpace: "nowrap",
-                                    }}
-                                >
-                                    <a
-                                        href={item.link}
-                                        target={item.link.startsWith("http") ? "_blank" : "_self"}
-                                        rel="noopener noreferrer"
-                                        className="flex items-center px-2 py-1 text-white"
-                                    >
-                                        <img
-                                            src={`support/${item.icon}`}
-                                            alt={item.label}
-                                            className="h-[25px] mr-2"
-                                        />
-                                        <span className="text-base">{item.label}</span>
-                                    </a>
-                                </div>
-                            ))}
-                        <br /><br /><br />
-                        {/* <a href="#"> hello from this</a>
-                         */}
-                         <a href="https://api.whatsapp.com/send?phone=+919999980500&amp;text=Hello! I am facing this problem in using LifePage: ">				  
-                                      <img src="support/helpbanner.jpg" width="150px" alt="Career Counselling 2.0" style={{borderRadius: "5px", border: "1px solid #505050"}} />
-                                      </a>
-                        </div>
-                    </div>
-
-                    <br /><br /><br />
-
-                </div>
+            <div className="flex justify-center gap-6 flex-wrap">
+              {socialIcons.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={`${BASE}support/${s.name}.png`}
+                    alt={s.name}
+                    className="h-10"
+                  />
+                </a>
+              ))}
             </div>
+          </div>
+
+          <Spacing />
+
+          {/* LEGACY NAV */}
+          <div className="flex justify-center text-sm text-[#505050]">
+            <div>
+              {legacyNav.map((item, i) => (
+                <div key={i} className="mb-2 bg-[#505050] whitespace-nowrap">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center px-2 py-1 text-white"
+                  >
+                    <img
+                      src={`${BASE}support/${item.icon}`}
+                      alt={item.label}
+                      className="h-[25px] mr-2"
+                    />
+                    <span>{item.label}</span>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <Spacing />
+
+          {/* WHATSAPP */}
+          <a
+            href="https://api.whatsapp.com/send?phone=+919999980500&text=Hello! I am facing this problem in using LifePage:"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={`${BASE}support/helpbanner.jpg`}
+              alt="Career Counselling"
+              width="150"
+              className="mx-auto rounded border border-[#505050]"
+            />
+          </a>
+
         </div>
-    );
+      </div>
+    </div>
+  );
 }
+
+/* ---------- SMALL COMPONENTS ---------- */
+
+const Separator = () => (
+  <div className="w-full h-px my-12 bg-[linear-gradient(to_right,rgba(248,158,84,0),rgba(248,158,84,0.75),rgba(248,158,84,0))]" />
+);
+
+const Divider = () => <div className="w-full h-px bg-[#999] my-6" />;
+
+const Spacing = ({ xl }) => (
+  <div className={xl ? "my-16" : "my-10"} />
+);
+
+const Card = ({ children }) => (
+  <div className="bg-[#262626] rounded shadow-lg p-1">
+    {children}
+  </div>
+);
+
+const SectionTitle = ({ title }) => (
+  <h2 className="text-xl font-semibold mb-6">{title}</h2>
+);
+
+const RightLink = ({ href, label }) => (
+  <div className="text-right mb-6">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 font-semibold hover:underline"
+    >
+      [{label}]
+      <img src={`${BASE}support/right.png`} alt="arrow" className="h-6" />
+    </a>
+  </div>
+);
+
+const ExternalButton = ({ href, label }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer">
+    <button className="bg-[#2196f3] text-white font-bold text-lg px-6 py-3 rounded shadow-lg">
+      {label}
+    </button>
+  </a>
+);
+
+const Profiles = () => (
+  <>
+    {[
+      { name: "Archana Mishra", url: "https://www.lifepage.in/page/archanamishra" },
+      { name: "Sumit Bahuguna", role: "IT Manager | Zee Entertainment Enterprises Ltd", url: "https://www.lifepage.in/page/sumitbahuguna" },
+      { name: "Sankhadip Bhattacharya", role: "Senior Geologist | ONGC Ltd", url: "https://www.lifepage.in/page/sankhadipbhattacharya" },
+      { name: "Dr. Srishti Bhatia", role: "Associate Director & Orthodontist | Bhatia Dentopulse", url: "https://www.lifepage.in/page/drsrishtibhatia" },
+      { name: "Vishnupriya Kolipakam", role: "Scientist C | Wildlife Institute of India", url: "https://www.lifepage.in/page/vishnupriyakolipakam" },
+    ].map((p, i) => (
+      <div key={i} className="mb-4">
+        <a href={p.url} target="_blank" rel="noopener noreferrer" className="font-bold">
+          {p.name}
+        </a>
+        {p.role && <div>{p.role}</div>}
+      </div>
+    ))}
+  </>
+);
+
+const ArticleLinks = () => (
+  <>
+    <p>Career in Political Economy Analysis:</p>
+    <a href="http://paste4btc.com/eOPTSIcV" target="_blank" rel="noopener noreferrer">
+      http://paste4btc.com/eOPTSIcV
+    </a>
+
+    <br /><br />
+
+    <p>Career in Packaging Design:</p>
+    <a href="https://5e203a8b426de.site123.me/" target="_blank" rel="noopener noreferrer">
+      https://5e203a8b426de.site123.me/
+    </a>
+  </>
+);

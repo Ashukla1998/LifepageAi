@@ -114,7 +114,7 @@ export default function Home() {
         >
           <span>Explore</span>
           {/* <ArrowRightIcon className="h-5 w-5" /> */}
-          <img src="path.png" alt="Explore path" className="h-6 w-6" />
+          <img src={`${import.meta.env.BASE_URL}path.png`} alt="Explore path" className="h-6 w-6" />
         </button>
 
       </div>
@@ -144,7 +144,7 @@ export default function Home() {
           "
         >
           <span>Discover</span>
-          <img src="support/research.png" alt="Discover" className="w-6 h-6" />
+          <img src={`${import.meta.env.BASE_URL}support/research.png`} alt="Discover" className="w-6 h-6" />
         </button>
 
         {/* Tooltip */}
