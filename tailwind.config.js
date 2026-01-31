@@ -1,25 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
         primary: ["Lato", "sans-serif"],
       },
       colors: {
-        brand: "#E46C09",
-        // base: "#FFFBEB",
+        lifepageYellow: "#ffc000",
+        lifepageBlue: "#2196f3",
         textPrimary: "#3F2D1C",
         textSecondary: "#6B7280",
-        buttoncolor: "#2196f3",
-        homecolor: "#ffc000",
       },
     },
   },
-  plugins: [
-   
-  ],
+  plugins: [],
 };
